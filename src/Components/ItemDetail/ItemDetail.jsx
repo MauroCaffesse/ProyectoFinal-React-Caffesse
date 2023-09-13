@@ -1,6 +1,14 @@
+import { useState } from "react";
 import ItemCount from "../ItemCount/ItemCount";
+import { Link } from "react-router-dom";
 
 const ItemDetail = ({ name, image, description, price }) => {
+  const [quantityAdded, setQuantityAdded] = useState(0);
+
+  const handleQuantity = (quantity) => {
+    setQuantityAdded(quantity);
+  };
+
   return (
     <article className="flex flex-col justify-center items-center">
       <header className="m-2">
@@ -14,11 +22,11 @@ const ItemDetail = ({ name, image, description, price }) => {
         <p className="mb-2">Description: {description}</p>
       </section>
       <footer>
-        <ItemCount
-          initial={1}
-          stock={10}
-          onAdd={(quantity) => console.log("Cantidad agregada ", quantity)}
-        />
+        {quantityAdded > 0 ? (
+          <Link to="/cart">Terminar compra</Link>
+        ) : (
+          <ItemCount initial={1} stock={10} onAdd={handleQuantity} />
+        )}
       </footer>
     </article>
   );
