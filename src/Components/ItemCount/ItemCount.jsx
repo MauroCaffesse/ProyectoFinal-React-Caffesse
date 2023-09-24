@@ -18,16 +18,20 @@ const ItemCount = ({ stock, initial, onAdd }) => {
   return (
     <div className="flex flex-col items-center">
       <div className="flex items-center">
-        <button onClick={decrement} className="p-1 rounded-full">
+        <button onClick={decrement} className="p-1 rounded-full border-none">
           -
         </button>
         <h4 className="mx-5">{quantity}</h4>
-        <button onClick={increment} className="p-1 rounded-full">
+        <button onClick={increment} className="p-1 rounded-full border-none">
           +
         </button>
       </div>
       <div>
-        <button onClick={() => onAdd(quantity)} disabled={!stock}>
+        <button
+          onClick={() => onAdd(quantity)}
+          disabled={!stock}
+          className="border-none"
+        >
           Add to cart
         </button>
       </div>
